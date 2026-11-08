@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfólio de João Gabriel Barros Guimarães — Infraestrutura, Redes, Cloud (AWS e GCP) e Automação em São José dos Campos, SP.">
+    <meta name="theme-color" content="#030306">
+    <title>João Gabriel Guimarães | Infraestrutura, Redes &amp; Cloud</title>
+
+    <!-- Tipografia refinada estilo Linear / Raycast: Sora (Display/Nav) + Inter (Leitura) + Ubuntu Mono (Terminal) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700;800&family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon Singularity -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2307080F'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23030306' stroke='%23F59E0B' stroke-width='2'/%3E%3Cellipse cx='16' cy='16' rx='12' ry='4.5' transform='rotate(-20 16 16)' fill='none' stroke='%2338BDF8' stroke-width='1.5'/%3E%3C/svg%3E">
+
+    <link rel="stylesheet" href="./static/style.css">
+
+    <!-- Bibliotecas para automação de UI, ícones e transições de scroll suaves -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+    <script src="./static/script.js" defer></script>
+</head>
+<body>
+    <a href="#hero-heading" class="skip-link visually-hidden">Pular para o conteúdo principal</a>
+    <div id="live-announcer" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- BACKGROUND INTERATIVO EM TELA CHEIA: Corpos Celestes por Seção + Malha Cósmica -->
+    <canvas id="cosmos-canvas" class="cosmos-canvas" aria-hidden="true"></canvas>
+    <div class="cosmic-grid-overlay" aria-hidden="true"></div>
+    <!-- Efeito de Lente Gravitacional ao clicar no Buraco Negro do topo ("sugando" de volta ao início) -->
+    <div id="singularity-warp-overlay" class="singularity-warp-overlay" aria-hidden="true">
+        <div class="warp-vortex-ring"></div>
+        <div class="warp-core-flash"></div>
+    </div>
+
+    <!-- HEADER REFINADO: Emblema Interativo de Buraco Negro + Cápsula Orbital + CTA Animado -->
+    <header class="site-header">
+        <div class="container navbar-inner">
+            <a href="#inicio" class="brand-link" id="brand-singularity-link">
+                <span class="brand-bh-emblem" aria-hidden="true">
+                    <svg class="brand-bh-svg" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="bhDiskGrad" x1="4" y1="24" x2="44" y2="24" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.85"/>
+                                <stop offset="35%" stop-color="#FDE68A" stop-opacity="1"/>
+                                <stop offset="70%" stop-color="#F59E0B" stop-opacity="0.95"/>
+                                <stop offset="100%" stop-color="#EA580C" stop-opacity="0.8"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- Arco de lente gravitacional superior e inferior -->
+                        <circle class="bh-lensing-ring" cx="24" cy="24" r="14" stroke="url(#bhDiskGrad)" stroke-width="1.4" stroke-dasharray="26 18"/>
+                        <!-- Disco de acreção inclinado -->
+                        <g class="bh-accretion-group">
+                            <ellipse class="bh-accretion-ellipse" cx="24" cy="24" rx="20" ry="6.5" transform="rotate(-18 24 24)" stroke="url(#bhDiskGrad)" stroke-width="2.6"/>
+                        </g>
+                        <!-- Partículas sendo puxadas para o horizonte de eventos no hover -->
+                        <circle class="bh-matter bh-m1" cx="9" cy="18" r="1.4" fill="#FDE68A"/>
+                        <circle class="bh-matter bh-m2" cx="39" cy="16" r="1.3" fill="#38BDF8"/>
+                        <circle class="bh-matter bh-m3" cx="36" cy="34" r="1.5" fill="#FB923C"/>
+                        <!-- Singularidade escura central + anel de fótons -->
+                        <circle class="bh-void-core" cx="24" cy="24" r="8.2" fill="#020205" stroke="#FDE68A" stroke-width="1.3"/>
+                    </svg>
+                </span>
+                <span class="brand-copy">
+                    <strong class="brand-name">João Gabriel</strong>
+                    <span class="brand-sub">Infraestrutura · Redes · Cloud</span>
+                    <span class="visually-hidden"> — Voltar ao início</span>
+                </span>
+            </a>
+
+            <nav aria-label="Principal" class="primary-nav" id="primary-nav">
+                <ul class="nav-list" id="nav-list">
+                    <li><a href="#inicio" class="nav-link is-current" aria-current="location">Início</a></li>
+                    <li><a href="#sobre" class="nav-link">Sobre</a></li>
+                    <li><a href="#competencias" class="nav-link">Competências</a></li>
+                    <li><a href="#projetos" class="nav-link">Projetos</a></li>
+                    <li><a href="#trajetoria" class="nav-link">Trajetória</a></li>
+                    <li><a href="#contato" class="nav-link">Contato</a></li>
+                </ul>
+            </nav>
+
+            <div class="navbar-actions">
+                <a href="https://github.com/gabrielbguimaraes" target="_blank" rel="noopener noreferrer" class="orbital-icon-btn" aria-label="GitHub de João Gabriel">
+                    <span class="orbital-icon-ring" aria-hidden="true"></span>
+                    <i data-lucide="github" aria-hidden="true"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/gabriel-g-854017138/" target="_blank" rel="noopener noreferrer" class="orbital-icon-btn hide-mobile" aria-label="LinkedIn de João Gabriel">
+                    <span class="orbital-icon-ring" aria-hidden="true"></span>
+                    <i data-lucide="linkedin" aria-hidden="true"></i>
+                </a>
+                <a href="#contato" class="btn-horizon-cta">
+                    <span class="horizon-cta-inner">
+                        <span class="horizon-cta-dot" aria-hidden="true"></span>
+                        <span>Falar comigo</span>
+                        <i data-lucide="arrow-up-right" class="horizon-cta-arrow" aria-hidden="true"></i>
+                    </span>
+                </a>
+                <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Abrir menu">
+                    <i data-lucide="menu" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- ==================================================================
+             SEÇÃO 1: INÍCIO — Corpo Celeste: Buraco Negro (Gargantua)
+             ================================================================== -->
+        <section class="hero-section celestial-section" id="inicio" data-celestial="blackhole">
+            <div class="container hero-grid">
+                <!-- Coluna Esquerda: Texto humano, realista e com gradiente animado -->
+                <div class="hero-copy">
+                    <h1 id="hero-heading" tabindex="-1" class="hero-title">
+                        Infraestrutura, redes e automação na prática para
+                        <span class="gradient-flow-text">resolver problemas reais.</span>
+                    </h1>
+
+                    <p class="hero-lead">
+                        Sou <strong>João Gabriel</strong>, apaixonado por <strong>infraestrutura, redes &amp; cloud</strong>, com 2 anos de vivência prática sustentando ambientes corporativos e resolvendo gargalos do dia a dia. Já atuei com automação de backups na <strong>AWS</strong>, fluxos no <strong>Google Cloud (GCP)</strong> e scripts em <strong>Python e Google Apps Script</strong> para automatizar processos e auditoria de acessos (IAM) no <strong>Google Workspace</strong>, além de monitoramento de redes com <strong>Zabbix e Docker</strong>. Estudante de Desenvolvimento de Software Multiplataforma na <strong>FATEC SJC</strong>.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="#projetos" class="btn-event-horizon magnetic-bh-btn">
+                            <span class="eh-accretion-border" aria-hidden="true"></span>
+                            <span class="eh-core">
+                                <span class="eh-mini-singularity" aria-hidden="true">
+                                    <svg viewBox="0 0 28 28" fill="none" aria-hidden="true">
+                                        <ellipse class="eh-disk" cx="14" cy="14" rx="12" ry="4.2" transform="rotate(-20 14 14)" stroke="#F59E0B" stroke-width="1.6"/>
+                                        <circle class="eh-photon" cx="14" cy="14" r="5.2" fill="#030306" stroke="#FDE68A" stroke-width="1.3"/>
+                                        <circle class="eh-orbiter" cx="4" cy="14" r="1.3" fill="#38BDF8"/>
+                                    </svg>
+                                </span>
+                                <span class="eh-label">Ver projetos práticos</span>
+                                <i data-lucide="arrow-down-right" class="eh-arrow" aria-hidden="true"></i>
+                            </span>
+                        </a>
+
+                        <a href="#contato" class="btn-lensing-orbit magnetic-bh-btn">
+                            <span class="lensing-rim" aria-hidden="true"></span>
+                            <span class="lensing-core">
+                                <span class="lensing-icon-wrap" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                        <circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-opacity="0.32" stroke-width="1.2" stroke-dasharray="4 3" class="lensing-dash-orbit"/>
+                                        <circle cx="12" cy="12" r="3" fill="#38BDF8" class="lensing-center-star"/>
+                                        <circle cx="19.5" cy="8.5" r="1.6" fill="#FDE68A" class="lensing-satellite"/>
+                                    </svg>
+                                </span>
+                                <span>Entrar em contato</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Coluna Direita: Terminal Ubuntu Integrado (Cabeçalho limpo sem título/botão redundantes) -->
+                <div class="hero-terminal-col">
+                    <div class="ubuntu-terminal">
+                        <div class="ubuntu-header" aria-hidden="true">
+                            <div class="ubuntu-controls">
+                                <span class="u-dot u-close"></span>
+                                <span class="u-dot u-min"></span>
+                                <span class="u-dot u-max"></span>
+                            </div>
+                        </div>
+
+                        <div class="ubuntu-body" id="ubuntu-output">
+                            <!-- Preenchido via JS na inicialização com resumo simples e direto -->
+                        </div>
+
+                        <div class="ubuntu-footer">
+                            <span class="ubuntu-hint">Clique para consultar rapidamente:</span>
+                            <div class="ubuntu-pills">
+                                <button type="button" class="u-pill is-active" data-term-cmd="resumo">resumo</button>
+                                <button type="button" class="u-pill" data-term-cmd="automacoes">automações</button>
+                                <button type="button" class="u-pill" data-term-cmd="redes">redes &amp; suporte</button>
+                                <button type="button" class="u-pill" data-term-cmd="idiomas">formação &amp; inglês</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================================================================
+             SEÇÃO 2: SOBRE MIM — Corpo Celeste: Estrela de Nêutrons (Pulsar)
+             ================================================================== -->
+        <section class="section celestial-section" id="sobre" data-celestial="neutron">
+            <div class="container">
+                <div class="section-header">
+                    <button type="button" class="celestial-emblem-btn emblem-pulsar" data-pulse-celestial="neutron">
+                        <span class="emblem-visual" aria-hidden="true">
+                            <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                                <circle class="pulsar-wave" cx="20" cy="20" r="14" stroke="#38BDF8" stroke-width="1"/>
+                                <g class="pulsar-beams">
+                                    <path d="M5 9 L20 19 L35 9" stroke="#7DD3FC" stroke-width="1.6" stroke-linecap="round" opacity="0.75"/>
+                                    <path d="M5 31 L20 21 L35 31" stroke="#7DD3FC" stroke-width="1.6" stroke-linecap="round" opacity="0.75"/>
+                                </g>
+                                <ellipse cx="20" cy="20" rx="13" ry="6.5" stroke="#38BDF8" stroke-opacity="0.4" stroke-width="1.1"/>
+                                <circle cx="20" cy="20" r="4.2" fill="#E0F2FE" stroke="#38BDF8" stroke-width="1.5"/>
+                            </svg>
+                        </span>
+                        <span class="emblem-text">
+                            <span class="emblem-kicker">Perfil Profissional</span>
+                        </span>
+                    </button>
+                    <h2 class="section-title">Quem sou e o que faço no dia a dia</h2>
+                </div>
+
+                <div class="about-grid">
+                    <!-- Card de Perfil com Idade Automática (08/02/2002) -->
+                    <aside class="profile-card surface-card" aria-label="Dados rápidos de João Gabriel">
+                        <div class="avatar-orbit-wrap">
+                            <div class="avatar-ring avatar-ring-1" aria-hidden="true"></div>
+                            <div class="avatar-ring avatar-ring-2" aria-hidden="true"></div>
+                            <img
+                                src="./mgt/foto_gabriel.jpeg"
+                                alt="João Gabriel Barros Guimarães"
+                                width="240"
+                                height="240"
+                                fetchpriority="high"
+                                class="profile-photo"
+                                id="profile-photo"
+                            >
+                        </div>
+
+                        <h3 class="profile-name">João Gabriel Barros Guimarães</h3>
+                        <p class="profile-role">Infraestrutura, Redes &amp; Cloud</p>
+
+                        <dl class="profile-details">
+                            <div class="detail-item">
+                                <dt>Idade &amp; Cidade</dt>
+                                <dd><span class="auto-age">24</span> anos · Manaus, AM → São José dos Campos, SP</dd>
+                            </div>
+                            <div class="detail-item">
+                                <dt>Graduação</dt>
+                                <dd>FATEC SJC · Desenvolvimento de Software Multiplataforma</dd>
+                            </div>
+                            <div class="detail-item">
+                                <dt>Idiomas</dt>
+                                <dd>Português nativo · <strong>Inglês Avançado (C1)</strong></dd>
+                            </div>
+                            <div class="detail-item">
+                                <dt>Objetivo</dt>
+                                <dd class="detail-highlight">Infraestrutura Cloud, Redes &amp; DevOps</dd>
+                            </div>
+                        </dl>
+                    </aside>
+
+                    <!-- Texto direto, sem jargão artificial de IA -->
+                    <div class="about-main">
+                        <div class="surface-card prose-card">
+                            <h3 class="sub-heading">Vivência real resolvendo demandas de TI e automatizando processos</h3>
+                            <p>
+                                Nascido em Manaus-AM e morando em São José dos Campos-SP, tenho <strong><span class="auto-age">24</span> anos</strong> e construí minha base combinando suporte de infraestrutura, redes e programação. Durante 2 anos como Estagiário de Infraestrutura na <strong>DEEP ESG</strong>, cuidei desde o atendimento de chamados e gestão do parque de computadores até o monitoramento da rede local usando <strong>Zabbix, Docker e Docker Compose</strong>.
+                            </p>
+                            <p>
+                                O que mais gosto de fazer na infraestrutura é identificar tarefas manuais demoradas ou falhas de controle e criar soluções práticas para resolvê-las: desenvolvi scripts em <strong>Python</strong> integrados à <strong>AWS e Google Cloud</strong> para validar backups de clientes semanalmente, além de automações com <strong>Google Apps Script</strong> e APIs para desligamento automático de contas e auditoria de acessos indevidos fora do Google Workspace.
+                            </p>
+                            <p>
+                                Hoje curso DSM na <strong>FATEC SJC</strong>, tenho base técnica em Hardware e Redes pelo <strong>SENAC</strong>, inglês nível <strong>C1 (Avançado)</strong> e busco atuar como Estagiário ou Analista em <strong>Infraestrutura, Redes ou DevOps</strong>.
+                            </p>
+                        </div>
+
+                        <!-- 3 frentes práticas explicadas de forma simples para RH e gestores -->
+                        <div class="practical-pillars">
+                            <div class="surface-card pillar-box">
+                                <div class="pillar-head">
+                                    <span class="pillar-icon icon-sky"><i data-lucide="network" aria-hidden="true"></i></span>
+                                    <h4>Redes, Linux &amp; Monitoramento</h4>
+                                </div>
+                                <p>Suporte local, protocolo TCP/IP, gerenciamento de diretório (Active Directory / LDAP), ambientes Linux e alertas no Zabbix com Docker.</p>
+                            </div>
+
+                            <div class="surface-card pillar-box">
+                                <div class="pillar-head">
+                                    <span class="pillar-icon icon-amber"><i data-lucide="cloud" aria-hidden="true"></i></span>
+                                    <h4>Automação em AWS &amp; GCP</h4>
+                                </div>
+                                <p>Rotinas agendadas com Python, Cloud Functions e GitHub Actions que verificam backups sozinhas e avisam a equipe por e-mail e chat.</p>
+                            </div>
+
+                            <div class="surface-card pillar-box">
+                                <div class="pillar-head">
+                                    <span class="pillar-icon icon-emerald"><i data-lucide="user-check" aria-hidden="true"></i></span>
+                                    <h4>Gestão de Acessos &amp; Workspace</h4>
+                                </div>
+                                <p>Automação no Google Admin, Jira e GitHub via Google Apps Script para agilizar offboarding e bloquear acessos esquecidos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================================================================
+             SEÇÃO 3: COMPETÊNCIAS — Sistema Estelar Interativo (Stephenson 2-18)
+             ================================================================== -->
+        <section class="section celestial-section" id="competencias" data-celestial="supergiant">
+            <div class="container">
+                <div class="section-header">
+                    <button type="button" class="celestial-emblem-btn emblem-supergiant" data-pulse-celestial="supergiant">
+                        <span class="emblem-visual" aria-hidden="true">
+                            <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                                <circle class="sg-orbit-ring" cx="20" cy="20" r="15.5" stroke="#FB923C" stroke-opacity="0.38" stroke-width="1" stroke-dasharray="3 3"/>
+                                <g class="sg-planet-spin">
+                                    <circle cx="35.5" cy="20" r="2" fill="#38BDF8"/>
+                                    <circle cx="7.5" cy="11" r="1.5" fill="#FDE68A"/>
+                                </g>
+                                <circle class="sg-corona" cx="20" cy="20" r="9.5" fill="#EA580C" fill-opacity="0.28"/>
+                                <circle cx="20" cy="20" r="6.2" fill="#F59E0B" stroke="#FDE68A" stroke-width="1.3"/>
+                            </svg>
+                        </span>
+                        <span class="emblem-text">
+                            <span class="emblem-kicker">Ecossistema Técnico</span>
+                        </span>
+                    </button>
+                    <h2 class="section-title">Ferramentas e tecnologias que utilizo</h2>
+                    <p class="section-desc">
+                        Passe o mouse ou clique em qualquer planeta no sistema estelar (ou nos ícones ao lado) para ver onde já apliquei cada tecnologia na prática.
+                    </p>
+                </div>
+
+                <!-- Filtros das órbitas -->
+                <div class="orbit-filter-bar" role="group" aria-label="Filtrar tecnologias por área">
+                    <button type="button" class="orbit-filter-btn is-active" data-orbit-filter="all" aria-pressed="true">Todas as órbitas</button>
+                    <button type="button" class="orbit-filter-btn" data-orbit-filter="infra" aria-pressed="false">Órbita 1 · Cloud &amp; Redes</button>
+                    <button type="button" class="orbit-filter-btn" data-orbit-filter="auto" aria-pressed="false">Órbita 2 · Automação &amp; Linux</button>
+                    <button type="button" class="orbit-filter-btn" data-orbit-filter="dev" aria-pressed="false">Órbita 3 · Sistemas &amp; Dados</button>
+                </div>
+
+                <div class="galaxy-Explorer">
+                    <!-- Palco Interativo de Órbitas -->
+                    <div class="stellar-stage surface-card" id="stellar-stage" aria-label="Mapa orbital interativo de competências">
+                        <div class="orbit-track orbit-track-1" data-track="infra" aria-hidden="true"></div>
+                        <div class="orbit-track orbit-track-2" data-track="auto" aria-hidden="true"></div>
+                        <div class="orbit-track orbit-track-3" data-track="dev" aria-hidden="true"></div>
+
+                        <!-- Estrela Central: Stephenson 2-18 -->
+                        <div class="central-star">
+                            <span class="star-corona" aria-hidden="true"></span>
+                            <span class="star-label">Infra &amp;<br>Cloud</span>
+                        </div>
+
+                        <!-- Nós planetários com ícones reais gerados/posicionados via JS -->
+                        <div class="stellar-nodes" id="stellar-nodes"></div>
+                    </div>
+
+                    <!-- Painel de Detalhes + Grade Visual de Ícones Reais -->
+                    <div class="skill-inspector-col">
+                        <!-- Card detalhando a tecnologia clicada -->
+                        <div class="skill-detail-card surface-card" id="skill-detail-card" aria-live="polite">
+                            <div class="skill-detail-top">
+                                <div class="skill-detail-logo-wrap">
+                                    <img id="detail-skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="Logo AWS" width="40" height="40">
+                                </div>
+                                <div>
+                                    <span class="skill-detail-group" id="detail-skill-group">Cloud &amp; Infraestrutura</span>
+                                    <h3 class="skill-detail-name" id="detail-skill-name">Amazon Web Services (AWS)</h3>
+                                </div>
+                            </div>
+                            <p class="skill-detail-desc" id="detail-skill-desc">
+                                Automação de verificação semanal de backups de clientes via API (boto3/S3) na DEEP ESG e uso de instâncias EC2 e bancos RDS em projetos de software na FATEC.
+                            </p>
+                            <div class="skill-detail-context" id="detail-skill-context">
+                                Onde usei: DEEP ESG · Projetos Inv.Sort e Checkpoint
+                            </div>
+                        </div>
+
+                        <!-- Grade rápida com todos os ícones SVG reais para leitura imediata do RH -->
+                        <div class="skill-icon-dock surface-card">
+                            <div class="dock-header">
+                                <span>Visão geral das ferramentas (clique para inspecionar):</span>
+                            </div>
+                            <div class="dock-grid" id="skill-dock-grid">
+                                <!-- Preenchido via JS com os mesmos ícones oficiais -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================================================================
+             SEÇÃO 4: PROJETOS — Corpo Celeste: Quasar 3C 273
+             ================================================================== -->
+        <section class="section celestial-section" id="projetos" data-celestial="quasar">
+            <div class="container">
+                <div class="projects-header-row">
+                    <div class="section-header">
+                        <button type="button" class="celestial-emblem-btn emblem-quasar" data-pulse-celestial="quasar">
+                            <span class="emblem-visual" aria-hidden="true">
+                                <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                                    <line class="quasar-jet-line" x1="7" y1="33" x2="33" y2="7" stroke="#818CF8" stroke-width="2" stroke-linecap="round"/>
+                                    <g class="quasar-disk-spin">
+                                        <ellipse cx="20" cy="20" rx="14" ry="5" transform="rotate(-32 20 20)" stroke="#38BDF8" stroke-width="1.5"/>
+                                    </g>
+                                    <circle cx="20" cy="20" r="4" fill="#FFFFFF" stroke="#818CF8" stroke-width="1.5"/>
+                                </svg>
+                            </span>
+                            <span class="emblem-text">
+                                <span class="emblem-kicker">Portfólio Prático</span>
+                            </span>
+                        </button>
+                        <h2 class="section-title">Projetos e automações desenvolvidas</h2>
+                        <p class="section-desc">
+                            Soluções criadas para resolver problemas reais em ambiente corporativo e projetos integradores da FATEC. Os cartões se adaptam ao formato original de cada tela — clique na imagem ou em <strong>Detalhes</strong> para ampliar.
+                        </p>
+                    </div>
+
+                    <div class="filter-bar" role="group" aria-label="Filtrar projetos">
+                        <button type="button" class="filter-btn is-active" data-filter="all" aria-pressed="true">Todos (7)</button>
+                        <button type="button" class="filter-btn" data-filter="infra" aria-pressed="false">Infra &amp; Automação (3)</button>
+                        <button type="button" class="filter-btn" data-filter="web" aria-pressed="false">Sistemas &amp; Web (4)</button>
+                    </div>
+                </div>
+
+                <!-- Navegador Interativo de Missões (Destaque Rápido no Topo) -->
+                <div class="mission-switcher surface-card" aria-label="Navegação rápida entre os projetos">
+                    <span class="mission-switcher-label">Ir direto ao estudo de caso:</span>
+                    <div class="mission-chips" id="mission-chips">
+                        <button type="button" class="mission-chip" data-open-project="aws-backups">1. Backups AWS</button>
+                        <button type="button" class="mission-chip" data-open-project="offboarding">2. Offboarding Automático</button>
+                        <button type="button" class="mission-chip" data-open-project="auditoria-acessos">3. Auditoria de Acessos</button>
+                        <button type="button" class="mission-chip" data-open-project="checkpoint">4. App Checkpoint</button>
+                        <button type="button" class="mission-chip" data-open-project="inv-sort">5. Inv.Sort (AWS)</button>
+                        <button type="button" class="mission-chip" data-open-project="smart-farming">6. Smart Farming</button>
+                        <button type="button" class="mission-chip" data-open-project="docker-web">7. Deploy com Docker</button>
+                    </div>
+                </div>
+
+                <!-- Galeria Adaptativa (Masonry fluido: cada card respeita o tamanho natural da imagem!) -->
+                <div class="projects-masonry" id="projects-grid">
+
+                    <!-- PROJETO 1: Automatização de Backups (DEEP ESG) -->
+                    <article class="project-card surface-card" data-category="infra">
+                        <button type="button" class="project-img-trigger" data-open-project="aws-backups" aria-label="Ampliar e ver detalhes de Automatização de Backups na AWS">
+                            <img
+                                src="./mgt/backups.PNG"
+                                alt="Ticket automático de verificação semanal dos backups de empresas na AWS"
+                                width="841"
+                                height="647"
+                                loading="lazy"
+                                class="project-fit-img"
+                            >
+                            <span class="zoom-hint"><i data-lucide="maximize-2" aria-hidden="true"></i> Ver print do terminal + detalhes</span>
+                        </button>
+                        <div class="project-content">
+                            <div class="project-meta-line">
+                                <span class="org-pill pill-amber">DEEP ESG · Infraestrutura</span>
+                                <span class="year-text">2024</span>
+                            </div>
+                            <h3 class="project-title">Automatização de Backups na AWS</h3>
+                            <p class="project-desc">
+                                Script em Python integrado à API da AWS (boto3) e agendado no Google Cloud para validar semanalmente os backups de mais de 140 clientes e enviar o relatório pronto por e-mail e Google Chat.
+                            </p>
+
+                            <div class="project-icons-row" aria-label="Tecnologias usadas">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python" title="Python" width="22" height="22" loading="lazy">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS" title="AWS" width="26" height="22" loading="lazy" class="icon-light-bg">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg" alt="Google Cloud" title="Google Cloud" width="22" height="22" loading="lazy">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/githubactions/githubactions-original.svg" alt="GitHub Actions" title="GitHub Actions" width="22" height="22" loading="lazy">
+                            </div>
+
+                            <div class="developed-skills">
+                                <span class="skills-label">Skills desenvolvidas:</span>
+                                <p>Automação com Python e boto3, agendamento serverless (Cloud Functions/Scheduler), webhooks e redução de tempo operacional do time.</p>
+                            </div>
+
+                            <button type="button" class="card-action-btn" data-open-project="aws-backups">
+                                <span>Abrir detalhes completos</span>
+                                <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- PROJETO 2: Offboarding Automático (DEEP ESG) -->
+                    <article class="project-card surface-card" data-category="infra">
+                        <button type="button" class="project-img-trigger" data-open-project="offboarding" aria-label="Ampliar e ver detalhes de Offboarding Automático">
+                            <img
+                                src="./mgt/offboarding.PNG"
+                                alt="Relatório automático de offboarding processado com status do Google Workspace, GitHub, Jira e comando gcloud"
+                                width="527"
+                                height="493"
+                                loading="lazy"
+                                class="project-fit-img"
+                            >
+                            <span class="zoom-hint"><i data-lucide="maximize-2" aria-hidden="true"></i> Ampliar imagem</span>
+                        </button>
+                        <div class="project-content">
+                            <div class="project-meta-line">
+                                <span class="org-pill pill-amber">DEEP ESG · Automação IAM</span>
+                                <span class="year-text">2024 – 2025</span>
+                            </div>
+                            <h3 class="project-title">Offboarding Automático de Colaboradores</h3>
+                            <p class="project-desc">
+                                Programa que automatiza o desligamento de contas corporativas: suspende o usuário no Google Workspace, remove da organização no GitHub, checa Jira/equipamentos e gera o guia de backup via <code>gcloud</code>.
+                            </p>
+
+                            <div class="project-icons-row" aria-label="Tecnologias usadas">
+                                <img src="./mgt/icons/appsscript.svg" alt="Google Apps Script" title="Google Apps Script" width="22" height="22" loading="lazy">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/google/google-original.svg" alt="Google Workspace" title="Google Workspace" width="22" height="22" loading="lazy">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jira/jira-original.svg" alt="Jira API" title="Jira API" width="22" height="22" loading="lazy">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/githubactions/githubactions-original.svg" alt="GitHub Actions" title="GitHub Actions" width="22" height="22" loading="lazy">
+                            </div>
+
+                            <div class="developed-skills">
+                                <span class="skills-label">Skills desenvolvidas:</span>
+                                <p>Integração de APIs REST (GitHub, Jira e Google), autonomia na melhoria de processos e prevenção de falhas humanas em desligamentos.</p>
+                            </div>
+
+                            <button type="button" class="card-action-btn" data-open-project="offboarding">
+                                <span>Abrir detalhes completos</span>
+                                <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- PROJETO 3: Auditoria Automática de Sistemas (DEEP ESG — Real do Currículo!) -->
+                    <article class="project-card surface-card" data-category="infra">
+                        <button type="button" class="project-img-trigger audit-visual-trigger" data-open-project="auditoria-acessos" aria-label="Ver detalhes de Auditoria Automática de Acessos">
+                            <!-- Painel visual ilustrando a varredura multi-sistemas do currículo -->
+                            <div class="audit-preview-box">
+                                <div class="audit-preview-header">
+                                    <span class="audit-status-dot"></span>
+                                    <span>Varredura de Acessos Externos</span>
+                                </div>
+                                <div class="audit-rows">
+                                    <div class="audit-row"><span>Google Admin API</span><strong class="tag-ok">Sincronizado</strong></div>
+                                    <div class="audit-row"><span>GitHub Organization</span><strong class="tag-ok">Auditado</strong></div>
+                                    <div class="audit-row"><span>Jira &amp; Hacker Rangers</span><strong class="tag-warn">Alerta no Chat</strong></div>
+                                </div>
+                            </div>
+                        </button>
+                        <div class="project-content">
+                            <div class="project-meta-line">
+                                <span class="org-pill pill-amber">DEEP ESG · Segurança &amp; IAM</span>
+                                <span class="year-text">2025</span>
+                            </div>
+                            <h3 class="project-title">Auditoria Automática de Acessos</h3>
+                            <p class="project-desc">
+                                Ferramenta criada para cruzar dados do Google Workspace com plataformas externas (GitHub, Jira e Hacker Rangers) e avisar automaticamente no Google Chat caso ex-colaboradores ainda tivessem acesso ativo.
+                            </p>
+
+                            <div class="project-icons-row" aria-label="Tecnologias usadas">
+                                <img src="./mgt/icons/appsscript.svg" alt="Google Apps Script" title="Google Apps Script" width="22" height="22" loading="lazy">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/google/google-original.svg" alt="Google Admin & Chat API" title="Google Admin & Chat API" width="22" height="22" loading="lazy">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jira/jira-original.svg" alt="Jira API" title="Jira API" width="22" height="22" loading="lazy">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git" title="Git" width="22" height="22" loading="lazy">
+                            </div>
+
+                            <div class="developed-skills">
+                                <span class="skills-label">Skills desenvolvidas:</span>
+                                <p>Governança de acessos (IAM), consumo de múltiplas APIs corporativas, alertas automatizados via webhook e visão proativa de segurança.</p>
+                            </div>
+
+                            <button type="button" class="card-action-btn" data-open-project="auditoria-acessos">
+                                <span>Abrir detalhes completos</span>
+                                <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- PROJETO 4: Inv.Sort (FATEC SJC — AWS RDS/EC2) -->
+                    <article class="project-card surface-card" data-category="web">
+                        <button type="button" class="project-img-trigger" data-open-project="inv-sort" aria-label="Ampliar e ver detalhes de Inv.Sort">
+                            <img
+                                src="./mgt/projeto-2.jpeg"
+                                alt="Tela de categorias de produtos do sistema Inv.Sort"
+                                width="1581"
+                                height="772"
+                                loading="lazy"
+                                class="project-fit-img"
+                            >
+                            <span class="zoom-hint"><i data-lucide="maximize-2" aria-hidden="true"></i> Ampliar imagem</span>
+                        </button>
+                        <div class="project-content">
+                            <div class="project-meta-line">
+                                <span class="org-pill pill-sky">FATEC SJC · Cloud &amp; Web</span>
+                                <span class="year-text">2024</span>
+                            </div>
+                            <h3 class="project-title">Inv.Sort — Controle de Estoque na AWS</h3>
+                            <p class="project-desc">
+                                Sistema web para controle de inventário, categorias e relatórios, onde atuei no back-end em Node.js e na integração com banco de dados e infraestrutura na AWS (RDS e EC2).
+                            </p>
+
+                            <div class="project-icons-row" aria-label="Tecnologias usadas">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS" title="AWS EC2 & RDS" width="26" height="22" loading="lazy" class="icon-light-bg">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="Node.js" title="Node.js" width="22" height="22" loading="lazy">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React" title="React" width="22" height="22" loading="lazy">
+                            </div>
+
+                            <div class="developed-skills">
+                                <span class="skills-label">Skills desenvolvidas:</span>
+                                <p>Banco relacional em nuvem (AWS RDS), deploy em EC2, APIs em Node.js, organização de documentação e trabalho ágil com Scrum.</p>
+                            </div>
+
+                            <button type="button" class="card-action-btn" data-open-project="inv-sort">
+                                <span>Abrir detalhes e GitHub</span>
+                                <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- PROJETO 5: Smart Farming (i9 FATEC) -->
+                    <article class="project-card surface-card" data-category="web">
+                        <button type="button" class="project-img-trigger" data-open-project="smart-farming" aria-label="Ampliar e ver detalhes de Smart Farming">
+                            <img
+                                src="./mgt/smart.PNG"
+                                alt="Painel de monitoramento diário da estufa inteligente Smart Farming"
+                                width="827"
+                                height="420"
+                                loading="lazy"
+                                class="project-fit-img"
+                            >
+                            <span class="zoom-hint"><i data-lucide="maximize-2" aria-hidden="true"></i> Ampliar imagem</span>
+                        </button>
+                        <div class="project-content">
+                            <div class="project-meta-line">
+                                <span class="org-pill pill-sky">i9 FATEC · Python &amp; Dados</span>
+                                <span class="year-text">2024</span>
+                            </div>
+                            <h3 class="project-title">Smart Farming — Monitoramento de Estufa</h3>
+                            <p class="project-desc">
+                                Aplicação web em Flask e MySQL para leitura e histórico de umidade, solo, temperatura e irrigação, com filtro por datas e cálculo de médias diárias.
+                            </p>
+
+                            <div class="project-icons-row" aria-label="Tecnologias usadas">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python" title="Python" width="22" height="22" loading="lazy">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg" alt="Flask" title="Flask" width="22" height="22" loading="lazy" class="icon-light-bg">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL" title="MySQL" width="22" height="22" loading="lazy">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript" width="22" height="22" loading="lazy">
+                            </div>
+
+                            <div class="developed-skills">
+                                <span class="skills-label">Skills desenvolvidas:</span>
+                                <p>Modelagem e consultas MySQL, rotas em Python/Flask, filtros de análise por período e colaboração em equipe.</p>
+                            </div>
+
+                            <button type="button" class="card-action-btn" data-open-project="smart-farming">
+                                <span>Abrir detalhes e GitHub</span>
+                                <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- PROJETO 6: Checkpoint (FATEC SJC — Mobile/Web Portrait Fit Natural!) -->
+                    <article class="project-card surface-card" data-category="web">
+                        <button type="button" class="project-img-trigger portrait-frame" data-open-project="checkpoint" aria-label="Ampliar e ver detalhes do app Checkpoint">
+                            <img
+                                src="./mgt/checkpoint.PNG"
+                                alt="Interface mobile do sistema de ponto eletrônico Checkpoint"
+                                width="282"
+                                height="617"
+                                loading="lazy"
+                                class="project-fit-img portrait-fit-img"
+                            >
+                            <span class="zoom-hint"><i data-lucide="maximize-2" aria-hidden="true"></i> Ampliar imagem</span>
+                        </button>
+                        <div class="project-content">
+                            <div class="project-meta-line">
+                                <span class="org-pill pill-sky">FATEC SJC · Scrum Master</span>
+                                <span class="year-text">2025</span>
+                            </div>
+                            <h3 class="project-title">Checkpoint — Controle de Jornada</h3>
+                            <p class="project-desc">
+                                Sistema para registro de ponto eletrônico, cálculo de horas e relatórios gerenciais hospedado na AWS, onde atuei como Scrum Master organizando entregas e alinhamento com o cliente.
+                            </p>
+
+                            <div class="project-icons-row" aria-label="Tecnologias usadas">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS" title="AWS" width="26" height="22" loading="lazy" class="icon-light-bg">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg" alt="Spring Boot" title="Spring Boot" width="22" height="22" loading="lazy">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="TypeScript" title="TypeScript" width="22" height="22" loading="lazy">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" alt="MongoDB" title="MongoDB" width="22" height="22" loading="lazy">
+                            </div>
+
+                            <div class="developed-skills">
+                                <span class="skills-label">Skills desenvolvidas:</span>
+                                <p>Liderança como Scrum Master, gestão de impedimentos, validação de requisitos com cliente e arquitetura multi-banco na AWS.</p>
+                            </div>
+
+                            <button type="button" class="card-action-btn" data-open-project="checkpoint">
+                                <span>Abrir detalhes e GitHub</span>
+                                <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- PROJETO 7: Deploy Conteinerizado Docker + MySQL -->
+                    <article class="project-card surface-card" data-category="web">
+                        <button type="button" class="project-img-trigger" data-open-project="docker-web" aria-label="Ampliar e ver detalhes da aplicação conteinerizada com Docker">
+                            <img
+                                src="./mgt/one_piece.png"
+                                alt="Aplicação web temática conteinerizada com Docker e MySQL"
+                                width="1569"
+                                height="718"
+                                loading="lazy"
+                                class="project-fit-img"
+                            >
+                            <span class="zoom-hint"><i data-lucide="maximize-2" aria-hidden="true"></i> Ampliar imagem</span>
+                        </button>
+                        <div class="project-content">
+                            <div class="project-meta-line">
+                                <span class="org-pill pill-sky">FATEC SJC · Containers</span>
+                                <span class="year-text">2024</span>
+                            </div>
+                            <h3 class="project-title">Aplicação Web Conteinerizada com Docker</h3>
+                            <p class="project-desc">
+                                Desenvolvimento completo de aplicação web com cadastro de usuários integrada a banco MySQL, empacotada e orquestrada com Docker e Docker Compose para rodar de forma idêntica em qualquer máquina.
+                            </p>
+
+                            <div class="project-icons-row" aria-label="Tecnologias usadas">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker" title="Docker & Compose" width="24" height="24" loading="lazy">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL" title="MySQL" width="22" height="22" loading="lazy">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript" width="22" height="22" loading="lazy">
+                            </div>
+
+                            <div class="developed-skills">
+                                <span class="skills-label">Skills desenvolvidas:</span>
+                                <p>Criação de containers Docker, orquestração multi-serviço (App + MySQL) via Docker Compose e portabilidade de ambiente.</p>
+                            </div>
+
+                            <button type="button" class="card-action-btn" data-open-project="docker-web">
+                                <span>Abrir detalhes e GitHub</span>
+                                <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================================================================
+             SEÇÃO 5: TRAJETÓRIA & CONTATO — Corpo Celeste: Exoplaneta / Lua Oceânica
+             ================================================================== -->
+        <section class="section celestial-section" id="trajetoria" data-celestial="exoplanet">
+            <div class="container">
+                <div class="section-header">
+                    <button type="button" class="celestial-emblem-btn emblem-exoplanet" data-pulse-celestial="exoplanet">
+                        <span class="emblem-visual" aria-hidden="true">
+                            <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                                <g class="exo-probe-orbit">
+                                    <ellipse cx="20" cy="20" rx="16" ry="7" transform="rotate(-24 20 20)" stroke="#34D399" stroke-opacity="0.45" stroke-width="1.2"/>
+                                    <circle cx="34.5" cy="13.5" r="1.9" fill="#6EE7B7"/>
+                                </g>
+                                <circle cx="20" cy="20" r="8.2" fill="#064E3B" stroke="#10B981" stroke-width="1.4"/>
+                                <path d="M17 12.5 A7.8 7.8 0 0 0 17 27.5 A6.2 6.2 0 0 1 17 12.5 Z" fill="#67E8F9" opacity="0.85"/>
+                            </svg>
+                        </span>
+                        <span class="emblem-text">
+                            <span class="emblem-kicker">Currículo &amp; Formação</span>
+                        </span>
+                    </button>
+                    <h2 class="section-title">Experiência profissional e base acadêmica</h2>
+                </div>
+
+                <!-- Linha do tempo interativa por abas / marcos -->
+                <div class="journey-layout">
+                    <div class="journey-tabs" role="tablist" aria-orientation="vertical" aria-label="Marcos da trajetória">
+                        <button type="button" class="journey-tab is-active" id="tab-deep" role="tab" aria-selected="true" aria-controls="journey-panel" tabindex="0" data-journey="deep">
+                            <span class="j-period">08/2023 – 08/2025</span>
+                            <strong class="j-title">DEEP ESG · Infraestrutura</strong>
+                            <span class="j-sub">2 anos · Experiência Profissional</span>
+                        </button>
+
+                        <button type="button" class="journey-tab" id="tab-fatec" role="tab" aria-selected="false" aria-controls="journey-panel" tabindex="-1" data-journey="fatec">
+                            <span class="j-period">02/2024 – 2027</span>
+                            <strong class="j-title">FATEC São José dos Campos</strong>
+                            <span class="j-sub">Graduação · DSM (Cursando)</span>
+                        </button>
+
+                        <button type="button" class="journey-tab" id="tab-senac-hw" role="tab" aria-selected="false" aria-controls="journey-panel" tabindex="-1" data-journey="senac-hw">
+                            <span class="j-period">02/2023 – 07/2023</span>
+                            <strong class="j-title">SENAC São José dos Campos</strong>
+                            <span class="j-sub">Formação em Hardware &amp; Redes</span>
+                        </button>
+
+                        <button type="button" class="journey-tab" id="tab-cursos" role="tab" aria-selected="false" aria-controls="journey-panel" tabindex="-1" data-journey="cursos">
+                            <span class="j-period">Formação Complementar &amp; Idiomas</span>
+                            <strong class="j-title">SENAC RS, ON BYTE &amp; Inglês C1</strong>
+                            <span class="j-sub">Base de Programação &amp; Fluência</span>
+                        </button>
+                    </div>
+
+                    <div class="journey-panel surface-card" id="journey-panel" role="tabpanel" aria-labelledby="tab-deep">
+                        <!-- Renderizado inicialmente com a experiência completa na DEEP ESG -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 6: CONTATO DIRETO + ASSINATURA ANUAL AUTOMÁTICA -->
+        <section class="section contact-section" id="contato">
+            <div class="container">
+                <div class="contact-card surface-card">
+                    <div class="contact-header">
+                        <button type="button" class="celestial-emblem-btn emblem-signal" data-pulse-celestial="exoplanet">
+                            <span class="emblem-visual" aria-hidden="true">
+                                <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                                    <circle class="signal-ring-1" cx="20" cy="20" r="8" stroke="#38BDF8" stroke-width="1.2"/>
+                                    <circle class="signal-ring-2" cx="20" cy="20" r="14" stroke="#10B981" stroke-width="1"/>
+                                    <circle cx="20" cy="20" r="3.5" fill="#6EE7B7"/>
+                                </svg>
+                            </span>
+                            <span class="emblem-text">
+                                <span class="emblem-kicker">Canal Direto</span>
+                            </span>
+                        </button>
+                        <h2 class="contact-title">Vamos conversar?</h2>
+                        <p class="contact-desc">
+                            Busco oportunidade como <strong>Estagiário ou Analista em Infraestrutura, Redes, Cloud ou DevOps</strong> em São José dos Campos, região ou remoto. Fique à vontade para chamar por qualquer canal:
+                        </p>
+                    </div>
+
+                    <div class="contact-grid">
+                        <a href="https://www.linkedin.com/in/gabriel-g-854017138/" target="_blank" rel="noopener noreferrer" class="contact-item">
+                            <span class="contact-icon icon-sky"><i data-lucide="linkedin" aria-hidden="true"></i></span>
+                            <span class="contact-text">
+                                <small>LinkedIn</small>
+                                <strong>/in/gabriel-g-854017138</strong>
+                            </span>
+                        </a>
+
+                        <a href="https://github.com/gabrielbguimaraes" target="_blank" rel="noopener noreferrer" class="contact-item">
+                            <span class="contact-icon icon-amber"><i data-lucide="github" aria-hidden="true"></i></span>
+                            <span class="contact-text">
+                                <small>GitHub</small>
+                                <strong>github.com/gabrielbguimaraes</strong>
+                            </span>
+                        </a>
+
+                        <div class="contact-item contact-item-split">
+                            <a href="mailto:biel_google@hotmail.com" class="contact-item-link">
+                                <span class="contact-icon icon-amber"><i data-lucide="mail" aria-hidden="true"></i></span>
+                                <span class="contact-text">
+                                    <small>E-mail</small>
+                                    <strong>biel_google@hotmail.com</strong>
+                                </span>
+                            </a>
+                            <button type="button" class="copy-btn" id="copy-email-btn" data-email="biel_google@hotmail.com" aria-label="Copiar e-mail biel_google@hotmail.com">
+                                Copiar
+                            </button>
+                        </div>
+
+                        <a href="https://wa.me/5512996605155" target="_blank" rel="noopener noreferrer" class="contact-item">
+                            <span class="contact-icon icon-emerald"><i data-lucide="message-circle" aria-hidden="true"></i></span>
+                            <span class="contact-text">
+                                <small>WhatsApp</small>
+                                <strong>(12) 99660-5155</strong>
+                            </span>
+                        </a>
+                    </div>
+
+                    <!-- Assinatura discreta com ano 100% automático via JS -->
+                    <div class="contact-minimal-meta">
+                        <span>&copy; <span id="auto-current-year">2026</span> João Gabriel Barros Guimarães</span>
+                        <span>São José dos Campos, SP</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL NATIVO (<dialog>) COM IMAGEM AMPLIADA + ALTERNÂNCIA DE PRINTS -->
+    <dialog id="project-dialog" class="project-dialog" closedby="any" aria-labelledby="dialog-title">
+        <div class="dialog-surface">
+            <div class="dialog-top">
+                <div class="dialog-badges">
+                    <span class="org-pill pill-amber" id="dialog-partner"></span>
+                    <span class="year-text" id="dialog-year"></span>
+                </div>
+                <form method="dialog">
+                    <button value="close" class="dialog-close" autofocus aria-label="Fechar janela">
+                        <i data-lucide="x" aria-hidden="true"></i>
+                    </button>
+                </form>
+            </div>
+
+            <h2 id="dialog-title" class="dialog-title"></h2>
+
+            <div class="dialog-gallery" id="dialog-gallery">
+                <img id="dialog-img" src="./mgt/backups.PNG" alt="" loading="lazy">
+                <div class="dialog-img-switcher" id="dialog-img-switcher" hidden></div>
+            </div>
+
+            <div class="dialog-body-grid">
+                <div class="dialog-box">
+                    <h3>O que foi feito</h3>
+                    <p id="dialog-desc"></p>
+                </div>
+
+                <div class="dialog-two-cols">
+                    <div class="dialog-box">
+                        <h3>Minha atuação</h3>
+                        <p id="dialog-role"></p>
+                    </div>
+                    <div class="dialog-box">
+                        <h3>Skills desenvolvidas</h3>
+                        <p id="dialog-skills"></p>
+                    </div>
+                </div>
+
+                <div class="dialog-box">
+                    <h3>Tecnologias utilizadas</h3>
+                    <div class="dialog-tech-list" id="dialog-tech-list"></div>
+                </div>
+            </div>
+
+            <div class="dialog-actions">
+                <a href="#" target="_blank" rel="noopener noreferrer" id="dialog-repo" class="btn-event-horizon btn-eh-compact">
+                    <span class="eh-accretion-border" aria-hidden="true"></span>
+                    <span class="eh-core">
+                        <i data-lucide="github" aria-hidden="true"></i>
+                        <span class="eh-label">Ver código no GitHub</span>
+                        <i data-lucide="arrow-up-right" class="eh-arrow" aria-hidden="true"></i>
+                    </span>
+                </a>
+                <span id="dialog-internal-note" class="internal-note" hidden>
+                    Automação interna corporativa (DEEP ESG)
+                </span>
+                <form method="dialog" class="dialog-close-right">
+                    <button value="close" class="btn btn-glass">Fechar</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
+</body>
+</html>

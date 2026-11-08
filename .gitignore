@@ -1,0 +1,21 @@
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# Environment variables & secrets
+.env
+.env.*
+!.env.example
+
+# Deployment & tooling directories
+.vercel/
+.vercel
+
+# OS & Editor metadata
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
