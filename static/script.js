@@ -61,6 +61,8 @@
     const primaryNav = document.getElementById('primary-nav');
     const navList = document.getElementById('nav-list');
     const navLinks = document.querySelectorAll('.nav-link');
+    let isUserNavClick = false;
+    let userNavClickTimer = 0;
 
     function moveNavGlider(targetLink) {
         if (!navList || !targetLink || window.innerWidth <= 1020) return;
@@ -97,6 +99,17 @@
         navLinks.forEach((link) => {
             link.addEventListener('mouseenter', () => moveNavGlider(link));
             link.addEventListener('focus', () => moveNavGlider(link));
+            link.addEventListener('click', () => {
+                const href = link.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    isUserNavClick = true;
+                    setCurrentNavByHref(href);
+                    window.clearTimeout(userNavClickTimer);
+                    userNavClickTimer = window.setTimeout(() => {
+                        isUserNavClick = false;
+                    }, 950);
+                }
+            });
         });
 
         navList.addEventListener('mouseleave', syncNavToCurrent);
@@ -303,6 +316,17 @@
             icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg',
             desc: 'Execução serverless com Cloud Functions, agendamento com Cloud Scheduler e retenção de arquivos via gcloud CLI e Cloud Storage.',
             context: 'Usado em: DEEP ESG (Automação de Backups e Offboarding)'
+        },
+        {
+            id: 'oci',
+            name: 'Oracle Cloud Infrastructure (OCI)',
+            short: 'Oracle Cloud',
+            group: 'infra',
+            groupLabel: 'Órbita 1 · Cloud & Redes',
+            orbitRadius: 19,
+            icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/oracle/oracle-original.svg',
+            desc: 'Arquitetura e infraestrutura corporativa na Oracle Cloud: provisionamento em nuvem, cluster Kubernetes gerenciado (OKE), redes virtuais e esteiras GitOps.',
+            context: 'Usado em: FATEC SJC / Xertica.ai (Projeto PrecedentIA)'
         },
         {
             id: 'zabbix',
@@ -1515,35 +1539,95 @@
             });
         });
 
-        /* Monitora qual seção está na tela para trocar o Corpo Celeste + link ativo */
-        const sections = document.querySelectorAll('.celestial-section');
+        /* Monitora qual seção está na tela para sincronizar Corpo Celeste + link ativo */
+        const trackedSectionIds = ['inicio', 'sobre', 'competencias', 'projetos', 'trajetoria', 'contato'];
+        const trackedSections = trackedSectionIds
+            .map((id) => document.getElementById(id))
+            .filter(Boolean);
+
+        let currentActiveSecId = '';
 
         function activateSection(sec) {
+            if (!sec || sec.id === currentActiveSecId) return;
+            currentActiveSecId = sec.id;
+
             const celestial = sec.dataset.celestial;
-            if (celestial) {
+            if (celestial && typeof setActiveCelestial === 'function') {
                 setActiveCelestial(celestial);
             }
             setCurrentNavByHref(`#${sec.id}`);
         }
 
-        if (window.gsap && window.ScrollTrigger) {
-            window.gsap.registerPlugin(window.ScrollTrigger);
-            sections.forEach((sec) => {
-                window.ScrollTrigger.create({
-                    trigger: sec,
-                    start: 'top 52%',
-                    end: 'bottom 52%',
-                    onEnter: () => activateSection(sec),
-                    onEnterBack: () => activateSection(sec)
-                });
+        function updateActiveSectionOnScroll() {
+            if (isUserNavClick || trackedSections.length === 0) return;
+
+            const scrollY = window.scrollY || window.pageYOffset;
+            const windowHeight = window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight;
+
+            // Se o usuário rolou até o rodapé, seleciona Contato
+            if (scrollY + windowHeight >= docHeight - 65) {
+                const contatoSec = document.getElementById('contato');
+                if (contatoSec) {
+                    activateSection(contatoSec);
+                    return;
+                }
+            }
+
+            // Ponto de foco na tela: 36% da altura do viewport (logo abaixo da navbar fixa)
+            const focusY = windowHeight * 0.36;
+            let currentSec = null;
+
+            for (let i = 0; i < trackedSections.length; i++) {
+                const sec = trackedSections[i];
+                const rect = sec.getBoundingClientRect();
+
+                if (rect.top <= focusY && rect.bottom >= focusY) {
+                    currentSec = sec;
+                    break;
+                }
+            }
+
+            // Fallback: se entre seções ou margem, escolhe a mais próxima do ponto de foco
+            if (!currentSec) {
+                let smallestDist = Infinity;
+                for (let i = 0; i < trackedSections.length; i++) {
+                    const sec = trackedSections[i];
+                    const rect = sec.getBoundingClientRect();
+                    const dist = Math.min(Math.abs(rect.top - focusY), Math.abs(rect.bottom - focusY));
+                    if (dist < smallestDist) {
+                        smallestDist = dist;
+                        currentSec = sec;
+                    }
+                }
+            }
+
+            if (currentSec) {
+                activateSection(currentSec);
+            }
+        }
+
+        let scrollRaf = 0;
+        function onScrollThrottled() {
+            if (scrollRaf) return;
+            scrollRaf = window.requestAnimationFrame(() => {
+                updateActiveSectionOnScroll();
+                scrollRaf = 0;
             });
-        } else if ('IntersectionObserver' in window) {
-            const secObs = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) activateSection(entry.target);
-                });
-            }, { rootMargin: '-42% 0px -42% 0px' });
-            sections.forEach((sec) => secObs.observe(sec));
+        }
+
+        window.addEventListener('scroll', onScrollThrottled, { passive: true });
+        window.addEventListener('resize', onScrollThrottled, { passive: true });
+        window.addEventListener('load', onScrollThrottled, { passive: true });
+
+        // Estado inicial ao carregar a página
+        if (window.location.hash) {
+            const initSec = document.querySelector(window.location.hash);
+            if (initSec) {
+                activateSection(initSec);
+            }
+        } else {
+            updateActiveSectionOnScroll();
         }
     }
 })();

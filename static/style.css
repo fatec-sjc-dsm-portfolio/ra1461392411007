@@ -271,6 +271,11 @@ main {
     }
 }
 
+.section,
+.hero-section {
+    scroll-margin-top: 4.5rem;
+}
+
 .section {
     padding-block: clamp(4.25rem, 7vw, 6.25rem);
     border-block-start: 1px solid rgba(255, 255, 255, 0.05);
