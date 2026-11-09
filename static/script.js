@@ -759,6 +759,47 @@
             skills: 'Criação de imagens Docker, redes entre containers no Docker Compose, persistência em MySQL e entrega ponta a ponta.',
             tech: ['Docker', 'Docker Compose', 'MySQL', 'JavaScript', 'HTML5 & CSS3'],
             repo: 'https://github.com/gabrielbguimaraes/dev_web_JGBG'
+        },
+        nimbus: {
+            title: 'Nimbus — Plataforma Meteorológica IoT & CI/CD',
+            partner: 'Fatec SJC · Tecsus',
+            year: '2024',
+            images: [
+                { src: './mgt/nimbus.png', label: 'Modelagem de Dados & Arquitetura', alt: 'Diagrama de modelagem e arquitetura de dados das estações meteorológicas Nimbus' }
+            ],
+            desc: 'Desenvolvido em parceria com a Tecsus, o Nimbus é uma solução IoT para captura, tratamento e visualização analítica de variáveis climáticas (temperatura, umidade, vento e precipitação) geradas por estações meteorológicas em tempo real.',
+            role: 'Responsável pela modelagem do banco de dados relacional voltado à ingestão contínua de telemetria climática e pela implementação de pipelines de Integração Contínua (CI/CD) para automação de testes e builds.',
+            skills: 'Pipelines CI/CD, Modelagem de Dados, Docker, AWS, Arquitetura de Software e Visão Sistêmica.',
+            tech: ['Python', 'Docker', 'GitHub Actions (CI/CD)', 'PostgreSQL', 'AWS', 'Git'],
+            repo: 'https://github.com/FR0M-ZER0/Nimbus'
+        },
+        precedentia: {
+            title: 'PrecedentIA — Infraestrutura Cloud OCI & Kubernetes',
+            partner: 'Fatec SJC · Xertica.ai',
+            year: '2025',
+            images: [
+                { src: './mgt/precedentia.png', label: 'Arquitetura OCI + Kubernetes + GitOps', alt: 'Diagrama da arquitetura de nuvem OCI com Kubernetes OKE e ArgoCD' },
+                { src: './mgt/precedentia-banner.png', label: 'Identidade & Visão do Projeto', alt: 'Banner e apresentação do projeto PrecedentIA' }
+            ],
+            desc: 'Assistente inteligente desenvolvido para o parceiro Xertica.ai, com o propósito de acelerar a análise e extração de insights de precedentes jurídicos e sentenças judiciais através de modelos de Inteligência Artificial generativa.',
+            role: 'Arquiteto e responsável direto por toda a infraestrutura em nuvem na Oracle Cloud Infrastructure (OCI): provisionamento do cluster Kubernetes gerenciado (OKE), configuração de esteiras GitOps com ArgoCD e conteinerização completa da aplicação.',
+            skills: 'Oracle Cloud (OCI), Kubernetes (OKE), ArgoCD (GitOps), Docker, CI/CD, Políticas de Rede/Segurança, Resiliência e Liderança Técnica.',
+            tech: ['Oracle Cloud (OCI)', 'Kubernetes (OKE)', 'ArgoCD', 'Docker', 'Python', 'FastAPI', 'React', 'TypeScript'],
+            repo: 'https://github.com/FR0M-ZER0/PrecedentIA'
+        },
+        sidebrain: {
+            title: 'SideBrain — Plataforma de Mentoria com IA & CI/CD',
+            partner: 'Fatec SJC · Projeto Integrador',
+            year: '2025',
+            images: [
+                { src: './mgt/sidebrain.png', label: 'Interface Principal da Aplicação', alt: 'Tela inicial Desktop do sistema SideBrain' },
+                { src: './mgt/sidebrain-cicd.png', label: 'Fluxo Automatizado de CI/CD', alt: 'Fluxo de esteira de Integração Contínua com GitHub Actions' }
+            ],
+            desc: 'Plataforma web colaborativa voltada à capacitação técnica e mentoria inteligente, gerando diagnósticos de competências e trilhas personalizadas de desenvolvimento profissional com suporte de IA.',
+            role: 'Atuação na estruturação da infraestrutura de microsserviços, criação de pipelines de CI/CD via GitHub Actions (com lint, testes e build automático de imagens) e padronização dos ambientes de desenvolvimento e deploy com Docker.',
+            skills: 'Automação CI/CD (GitHub Actions), Docker & Docker Compose, Arquitetura de Microsserviços, Trabalho em Equipe e Pensamento Crítico.',
+            tech: ['Docker', 'Docker Compose', 'GitHub Actions', 'TypeScript', 'React', 'Node.js', 'PostgreSQL'],
+            repo: 'https://github.com/FR0M-ZER0/Sidebrain'
         }
     };
 

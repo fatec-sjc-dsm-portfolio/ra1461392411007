@@ -410,9 +410,9 @@
                     </div>
 
                     <div class="filter-bar" role="group" aria-label="Filtrar projetos">
-                        <button type="button" class="filter-btn is-active" data-filter="all" aria-pressed="true">Todos (7)</button>
-                        <button type="button" class="filter-btn" data-filter="infra" aria-pressed="false">Infra &amp; Automação (3)</button>
-                        <button type="button" class="filter-btn" data-filter="web" aria-pressed="false">Sistemas &amp; Web (4)</button>
+                        <button type="button" class="filter-btn is-active" data-filter="all" aria-pressed="true">Todos (10)</button>
+                        <button type="button" class="filter-btn" data-filter="infra" aria-pressed="false">Infra &amp; Automação (5)</button>
+                        <button type="button" class="filter-btn" data-filter="web" aria-pressed="false">Sistemas &amp; Web (5)</button>
                     </div>
                 </div>
 
@@ -427,6 +427,9 @@
                         <button type="button" class="mission-chip" data-open-project="inv-sort">5. Inv.Sort (AWS)</button>
                         <button type="button" class="mission-chip" data-open-project="smart-farming">6. Smart Farming</button>
                         <button type="button" class="mission-chip" data-open-project="docker-web">7. Deploy com Docker</button>
+                        <button type="button" class="mission-chip" data-open-project="nimbus">8. Nimbus (CI/CD)</button>
+                        <button type="button" class="mission-chip" data-open-project="precedentia">9. PrecedentIA (OCI &amp; K8s)</button>
+                        <button type="button" class="mission-chip" data-open-project="sidebrain">10. SideBrain (IA)</button>
                     </div>
                 </div>
 
@@ -722,6 +725,132 @@
                             </div>
 
                             <button type="button" class="card-action-btn" data-open-project="docker-web">
+                                <span>Abrir detalhes e GitHub</span>
+                                <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- PROJETO 8: Nimbus (FATEC SJC / Tecsus — CI/CD & Modelagem IoT) -->
+                    <article class="project-card surface-card" data-category="infra">
+                        <button type="button" class="project-img-trigger" data-open-project="nimbus" aria-label="Ampliar e ver detalhes de Nimbus">
+                            <img
+                                src="./mgt/nimbus.png"
+                                alt="Modelagem de dados e arquitetura das estações meteorológicas IoT do projeto Nimbus"
+                                width="1383"
+                                height="917"
+                                loading="lazy"
+                                class="project-fit-img"
+                            >
+                            <span class="zoom-hint"><i data-lucide="maximize-2" aria-hidden="true"></i> Ampliar modelagem</span>
+                        </button>
+                        <div class="project-content">
+                            <div class="project-meta-line">
+                                <span class="org-pill pill-amber">FATEC SJC · Tecsus</span>
+                                <span class="year-text">2024</span>
+                            </div>
+                            <h3 class="project-title">Nimbus — Estações Meteorológicas IoT &amp; CI/CD</h3>
+                            <p class="project-desc">
+                                Plataforma de monitoramento de estações meteorológicas em tempo real, onde atuei na modelagem relacional de telemetria climática e na estruturação de esteiras de Integração Contínua (CI/CD) com Docker.
+                            </p>
+
+                            <div class="project-icons-row" aria-label="Tecnologias usadas">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python" title="Python" width="22" height="22" loading="lazy">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker" title="Docker" width="24" height="24" loading="lazy">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/githubactions/githubactions-original.svg" alt="GitHub Actions" title="GitHub Actions" width="22" height="22" loading="lazy">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" title="PostgreSQL" width="22" height="22" loading="lazy">
+                            </div>
+
+                            <div class="developed-skills">
+                                <span class="skills-label">Skills desenvolvidas:</span>
+                                <p>Esteiras de CI/CD automatizadas, modelagem de dados para ingestão contínua, padronização de ambientes com Docker e visão sistêmica em time ágil.</p>
+                            </div>
+
+                            <button type="button" class="card-action-btn" data-open-project="nimbus">
+                                <span>Abrir detalhes e GitHub</span>
+                                <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- PROJETO 9: PrecedentIA (FATEC SJC / Xertica.ai — OCI, K8s & ArgoCD) -->
+                    <article class="project-card surface-card" data-category="infra">
+                        <button type="button" class="project-img-trigger" data-open-project="precedentia" aria-label="Ampliar e ver detalhes de PrecedentIA">
+                            <img
+                                src="./mgt/precedentia.png"
+                                alt="Arquitetura de nuvem Oracle Cloud (OCI) com Kubernetes OKE e ArgoCD do projeto PrecedentIA"
+                                width="1023"
+                                height="846"
+                                loading="lazy"
+                                class="project-fit-img"
+                            >
+                            <span class="zoom-hint"><i data-lucide="maximize-2" aria-hidden="true"></i> Ampliar arquitetura</span>
+                        </button>
+                        <div class="project-content">
+                            <div class="project-meta-line">
+                                <span class="org-pill pill-amber">FATEC SJC · Xertica.ai</span>
+                                <span class="year-text">2025</span>
+                            </div>
+                            <h3 class="project-title">PrecedentIA — Nuvem OCI, Kubernetes &amp; ArgoCD</h3>
+                            <p class="project-desc">
+                                Assistente jurídico inteligente com infraestrutura cloud desenhada do zero: provisionamento na Oracle Cloud (OCI), cluster Kubernetes gerenciado (OKE), deploy contínuo GitOps via ArgoCD e conteinerização.
+                            </p>
+
+                            <div class="project-icons-row" aria-label="Tecnologias usadas">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/oracle/oracle-original.svg" alt="Oracle Cloud" title="Oracle Cloud (OCI)" width="26" height="22" loading="lazy">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kubernetes/kubernetes-plain.svg" alt="Kubernetes" title="Kubernetes (OKE)" width="24" height="24" loading="lazy">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/argocd/argocd-original.svg" alt="ArgoCD" title="ArgoCD GitOps" width="22" height="22" loading="lazy">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker" title="Docker" width="24" height="24" loading="lazy">
+                            </div>
+
+                            <div class="developed-skills">
+                                <span class="skills-label">Skills desenvolvidas:</span>
+                                <p>Arquitetura Cloud em OCI, orquestração Kubernetes (OKE), esteiras GitOps com ArgoCD, automação com Docker e liderança técnica de infraestrutura.</p>
+                            </div>
+
+                            <button type="button" class="card-action-btn" data-open-project="precedentia">
+                                <span>Abrir detalhes e GitHub</span>
+                                <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- PROJETO 10: SideBrain (FATEC SJC — IA, Microsserviços & CI/CD) -->
+                    <article class="project-card surface-card" data-category="web">
+                        <button type="button" class="project-img-trigger" data-open-project="sidebrain" aria-label="Ampliar e ver detalhes de SideBrain">
+                            <img
+                                src="./mgt/sidebrain.png"
+                                alt="Interface web da plataforma de mentoria e mapeamento de competências SideBrain"
+                                width="5184"
+                                height="4160"
+                                loading="lazy"
+                                class="project-fit-img"
+                            >
+                            <span class="zoom-hint"><i data-lucide="maximize-2" aria-hidden="true"></i> Ampliar aplicação</span>
+                        </button>
+                        <div class="project-content">
+                            <div class="project-meta-line">
+                                <span class="org-pill pill-sky">FATEC SJC · Plataforma IA</span>
+                                <span class="year-text">2025</span>
+                            </div>
+                            <h3 class="project-title">SideBrain — Plataforma de Mentoria com IA &amp; CI/CD</h3>
+                            <p class="project-desc">
+                                Plataforma inteligente para mapeamento de competências técnicas e trilhas de mentoria com IA, arquitetada em microsserviços com automação de builds e testes via GitHub Actions e Docker.
+                            </p>
+
+                            <div class="project-icons-row" aria-label="Tecnologias usadas">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/githubactions/githubactions-original.svg" alt="GitHub Actions" title="GitHub Actions (CI/CD)" width="22" height="22" loading="lazy">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker" title="Docker &amp; Compose" width="24" height="24" loading="lazy">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="TypeScript" title="TypeScript" width="22" height="22" loading="lazy">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React" title="React" width="22" height="22" loading="lazy">
+                            </div>
+
+                            <div class="developed-skills">
+                                <span class="skills-label">Skills desenvolvidas:</span>
+                                <p>Arquitetura modular de microsserviços, pipelines de CI/CD automatizadas no GitHub Actions, conteinerização com Docker e colaboração em engenharia ágil.</p>
+                            </div>
+
+                            <button type="button" class="card-action-btn" data-open-project="sidebrain">
                                 <span>Abrir detalhes e GitHub</span>
                                 <i data-lucide="arrow-up-right" aria-hidden="true"></i>
                             </button>
